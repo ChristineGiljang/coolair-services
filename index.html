@@ -127,18 +127,34 @@
     </footer>
 
     <!-- n8n Chat Widget -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css"
-      rel="stylesheet"
-    />
-    <script type="module">
-      import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js";
+   <script type="module">
+  import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js";
 
-      createChat({
-        webhookUrl:
-          "https://n8n.christinegiljang.it.com/webhook/cffdfe68-9f96-4874-87c5-c0239aecf701/chat",
-      });
-    </script>
+  createChat({
+    webhookUrl:
+      "https://n8n.christinegiljang.it.com/webhook/cffdfe68-9f96-4874-87c5-c0239aecf701/chat",
+
+    // 💬 Customizations
+    chatInputPlaceholder: "Ask Cool Air anything...",
+    theme: {
+      chat: {
+        background: "#ffffff",
+        textColor: "#333333",
+      },
+      input: {
+        background: "#f9f9f9",
+        borderRadius: "12px",
+        borderColor: "#cccccc",
+        textColor: "#333333",
+      },
+      button: {
+        background: "#1e90ff",
+        textColor: "#fff",
+      },
+    },
+  });
+</script>
+
 
     <!-- Basic Scripts -->
     <script>

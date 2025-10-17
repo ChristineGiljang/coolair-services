@@ -392,6 +392,9 @@
       createChat({
         webhookUrl: "https://n8n.christinegiljang.it.com/webhook/cffdfe68-9f96-4874-87c5-c0239aecf701/chat",
         target: "#chat-box"
+        styling: {
+    inputTextAlign: "center"
+  }
       });
     </script>
 

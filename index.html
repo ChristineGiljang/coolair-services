@@ -127,58 +127,62 @@
     </footer>
 
     <!-- n8n Chat Widget -->
+<!-- n8n Embedded Chat -->
+<div id="chat-box"></div>
+
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@n8n/chat@latest/style.css"
 />
 
+<style>
+  /* === Custom Style === */
+  #chat-box {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 380px;
+    max-height: 520px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+  }
+
+  n8n-chat {
+    height: 100%;
+    display: block;
+  }
+
+  /* Customize inside the component (this time it works) */
+  n8n-chat::part(container) {
+    background: white;
+    border-radius: 16px;
+  }
+
+  n8n-chat::part(input) {
+    font-size: 16px;
+    min-height: 55px;
+    padding: 12px 14px;
+    border-radius: 8px;
+  }
+
+  n8n-chat::part(send-button) {
+    background-color: #1e90ff;
+    color: white;
+    border-radius: 8px;
+  }
+</style>
+
 <script type="module">
   import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat@latest/dist/chat.bundle.es.js";
 
-  // Initialize chat widget
   createChat({
     webhookUrl: "https://n8n.christinegiljang.it.com/webhook/cffdfe68-9f96-4874-87c5-c0239aecf701/chat",
+    target: "#chat-box", // attach chat to this div
   });
-
-  // Observe and wait for n8n-chat element to appear
-  const observer = new MutationObserver(() => {
-    const n8nChat = document.querySelector("n8n-chat");
-    if (n8nChat && n8nChat.shadowRoot) {
-      const style = document.createElement("style");
-      style.textContent = `
-        /* Center the input and make it taller */
-        .chat-input-container {
-          display: flex !important;
-          align-items: center !important;
-          justify-content: space-between !important;
-          padding: 8px 10px !important;
-        }
-
-        .chat-input {
-          flex: 1 !important;
-          min-height: 55px !important;
-          font-size: 16px !important;
-          border-radius: 8px !important;
-          padding: 12px 14px !important;
-          box-sizing: border-box !important;
-        }
-
-        .chat-send-button {
-          height: 50px !important;
-          width: 50px !important;
-          margin-left: 8px !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-        }
-      `;
-      n8nChat.shadowRoot.appendChild(style);
-      observer.disconnect(); // stop watching once applied
-    }
-  });
-
-  observer.observe(document.body, { childList: true, subtree: true });
 </script>
+
 
 
 

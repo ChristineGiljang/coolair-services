@@ -136,7 +136,7 @@
 />
 
 <style>
-  /* === Custom Style === */
+  /* === Chat Box Container === */
   #chat-box {
     position: fixed;
     bottom: 25px;
@@ -154,25 +154,62 @@
     display: block;
   }
 
-  /* Customize inside the component (this time it works) */
+  /* === Chat Layout === */
   n8n-chat::part(container) {
     background: white;
     border-radius: 16px;
+    border: 1px solid #e0e0e0;
   }
 
+  /* === Message Area === */
+  n8n-chat::part(messages) {
+    padding: 12px;
+  }
+
+  /* === Input Container Fix === */
+  n8n-chat::part(input-container) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px !important; /* reduce extra spacing */
+    padding: 8px 10px !important;
+    border-top: 1px solid #ddd;
+    background: #fafafa;
+  }
+
+  /* === Text Input Styling === */
   n8n-chat::part(input) {
-    font-size: 16px;
-    min-height: 55px;
-    padding: 12px 14px;
-    border-radius: 8px;
+    flex: 1 !important; /* stretch full width */
+    font-size: 16px !important;
+    min-height: 55px !important;
+    padding: 12px 14px !important;
+    border-radius: 8px !important;
+    border: 1px solid #ccc !important;
+    background: white !important;
   }
 
+  /* === Send Button === */
   n8n-chat::part(send-button) {
-    background-color: #1e90ff;
-    color: white;
-    border-radius: 8px;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 8px !important;
+    background-color: #1e90ff !important;
+    color: white !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* === Mobile Responsive === */
+  @media (max-width: 600px) {
+    #chat-box {
+      width: 95%;
+      right: 2.5%;
+      bottom: 20px;
+    }
   }
 </style>
+
 
 <script type="module">
   import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat@latest/dist/chat.bundle.es.js";

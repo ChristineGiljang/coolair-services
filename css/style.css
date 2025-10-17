@@ -221,14 +221,22 @@
         width: 100%;
       }
 
-      /* Style chat input via global selectors */
-      #chat-box input[type="text"],
-      #chat-box input {
+      /* Style chat input via class selectors */
+      .chat-footer {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+      }
+
+      .chat-input {
         text-align: center !important;
+        flex: 1 !important;
         width: 100% !important;
       }
 
-      #chat-box textarea {
+      .chat-input input,
+      .chat-input textarea {
         text-align: center !important;
         width: 100% !important;
       }
@@ -405,25 +413,37 @@
 
         // Style n8n chat input when it loads
         setTimeout(() => {
-          const chatBox = document.querySelector("#chat-box");
-          if (chatBox) {
-            const styleSheet = document.createElement("style");
-            styleSheet.textContent = `
-              #chat-box input[type="text"] { text-align: center !important; }
-              #chat-box input { text-align: center !important; }
-              #chat-box textarea { text-align: center !important; }
-            `;
-            chatBox.appendChild(styleSheet);
-
-            const observer = new MutationObserver(() => {
-              const inputs = chatBox.querySelectorAll("input, textarea");
-              inputs.forEach(input => {
-                input.style.textAlign = "center !important";
-                input.style.width = "100%";
-              });
-            });
-            observer.observe(chatBox, { childList: true, subtree: true, attributes: true });
+          const chatFooter = document.querySelector(".chat-footer");
+          const chatInput = document.querySelector(".chat-input");
+          
+          if (chatFooter) {
+            chatFooter.style.display = "flex";
+            chatFooter.style.justifyContent = "center";
+            chatFooter.style.alignItems = "center";
+            chatFooter.style.gap = "8px";
           }
+
+          if (chatInput) {
+            chatInput.style.textAlign = "center";
+            chatInput.style.flex = "1";
+            chatInput.style.width = "100%";
+
+            const inputs = chatInput.querySelectorAll("input, textarea");
+            inputs.forEach(input => {
+              input.style.textAlign = "center";
+              input.style.width = "100%";
+            });
+          }
+
+          // Watch for changes
+          const observer = new MutationObserver(() => {
+            const inputs = document.querySelectorAll(".chat-input input, .chat-input textarea");
+            inputs.forEach(input => {
+              input.style.textAlign = "center";
+              input.style.width = "100%";
+            });
+          });
+          observer.observe(document.body, { childList: true, subtree: true });
         }, 500);
       });
     </script>

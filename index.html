@@ -127,8 +127,6 @@
     </footer>
 
     <!-- n8n Chat Widget -->
-<!-- n8n Chat Widget -->
-<!-- n8n Chat Widget -->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@n8n/chat@latest/style.css"
@@ -137,43 +135,49 @@
 <script type="module">
   import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat@latest/dist/chat.bundle.es.js";
 
-  const chat = createChat({
+  // Initialize chat widget
+  createChat({
     webhookUrl: "https://n8n.christinegiljang.it.com/webhook/cffdfe68-9f96-4874-87c5-c0239aecf701/chat",
   });
 
-  // Fix alignment after widget loads
-  chat.onReady(() => {
-    const shadow = document.querySelector("n8n-chat").shadowRoot;
-    const style = document.createElement("style");
-    style.textContent = `
-      /* Make input taller & centered */
-      .chat-input-container {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        padding: 8px 10px !important;
-      }
+  // Observe and wait for n8n-chat element to appear
+  const observer = new MutationObserver(() => {
+    const n8nChat = document.querySelector("n8n-chat");
+    if (n8nChat && n8nChat.shadowRoot) {
+      const style = document.createElement("style");
+      style.textContent = `
+        /* Center the input and make it taller */
+        .chat-input-container {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          padding: 8px 10px !important;
+        }
 
-      .chat-input {
-        flex: 1 !important;
-        min-height: 55px !important;
-        font-size: 16px !important;
-        border-radius: 8px !important;
-        padding: 12px 14px !important;
-        box-sizing: border-box !important;
-      }
+        .chat-input {
+          flex: 1 !important;
+          min-height: 55px !important;
+          font-size: 16px !important;
+          border-radius: 8px !important;
+          padding: 12px 14px !important;
+          box-sizing: border-box !important;
+        }
 
-      .chat-send-button {
-        height: 50px !important;
-        width: 50px !important;
-        margin-left: 8px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-    `;
-    shadow.appendChild(style);
+        .chat-send-button {
+          height: 50px !important;
+          width: 50px !important;
+          margin-left: 8px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+      `;
+      n8nChat.shadowRoot.appendChild(style);
+      observer.disconnect(); // stop watching once applied
+    }
   });
+
+  observer.observe(document.body, { childList: true, subtree: true });
 </script>
 
 

@@ -127,10 +127,63 @@
     </footer>
 
     <!-- n8n Chat Widget -->
+<!-- n8n Chat Widget -->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@n8n/chat@latest/style.css"
 />
+
+<style>
+  /* === Theme Colors === */
+  :root {
+    --n8n-color-primary: #1e90ff; /* Cool Air Blue */
+    --n8n-chat-bg: #ffffff; /* White chat background */
+    --n8n-chat-text: #333; /* Dark text for readability */
+    --n8n-chat-bubble-bottom: 25px;
+    --n8n-chat-bubble-right: 25px;
+  }
+
+  /* === Chat Window Size === */
+  .n8n-chat-container {
+    max-width: 420px !important; /* a bit wider for comfort */
+  }
+
+  /* === Message Area === */
+  .n8n-chat-message {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* === Chat Input Area === */
+  .n8n-chat-input {
+    min-height: 60px !important; /* bigger typing box */
+    font-size: 16px !important;
+    padding: 12px 14px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* === Send Button Alignment === */
+  .n8n-chat-send-button {
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* === Mobile Friendly === */
+  @media (max-width: 600px) {
+    .n8n-chat-container {
+      max-width: 95% !important;
+      right: 2.5% !important;
+      bottom: 20px !important;
+    }
+    .n8n-chat-input {
+      min-height: 55px !important;
+      font-size: 15px !important;
+    }
+  }
+</style>
+
 <script type="module">
   import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat@latest/dist/chat.bundle.es.js";
 

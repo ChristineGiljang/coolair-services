@@ -168,26 +168,27 @@
 
   /* === Input Container Fix === */
   n8n-chat::part(input-container) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px !important; /* reduce extra spacing */
-    padding: 8px 10px !important;
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    padding: 10px !important;
     border-top: 1px solid #ddd;
     background: #fafafa;
   }
 
   /* === Text Input Styling === */
   n8n-chat::part(input) {
-    flex: 1 !important; /* stretch full width */
-    font-size: 16px !important;
-    min-height: 55px !important;
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    font-size: 15px !important;
+    min-height: 50px !important;
+    max-height: 120px !important;
     padding: 12px 14px !important;
     border-radius: 8px !important;
     border: 1px solid #ccc !important;
     background: white !important;
+    resize: none !important;
   }
-
   /* === Send Button === */
   n8n-chat::part(send-button) {
     height: 50px !important;

@@ -9,57 +9,6 @@
       rel="stylesheet"
     />
   </head>
-<style>
-    .chat-inputs {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px;
-  border-top: 1px solid #ccc;
-  background-color: #fff;
-  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.05);
-}
-
-.chat-inputs textarea {
-  flex-grow: 1;
-  resize: none;
-  padding: 10px 14px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: 14px;
-  line-height: 1.4;
-  outline: none;
-  transition: border 0.2s ease;
-}
-
-.chat-inputs textarea:focus {
-  border-color: #4a90e2;
-}
-
-.chat-inputs-controls {
-  display: flex;
-  align-items: center;
-}
-
-.chat-input-send-button {
-  background-color: #4a90e2;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.chat-input-send-button[disabled] {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-</style>
 
   <body>
     <!-- HEADER -->
@@ -176,13 +125,20 @@
         <p>© <span id="year"></span> Cool Air Services — Demo</p>
       </div>
     </footer>
-<script type="module">
-  import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat@latest/dist/chat.bundle.es.js";
 
-  createChat({
-    webhookUrl: "https://n8n.christinegiljang.it.com/webhook/cffdfe68-9f96-4874-87c5-c0239aecf701/chat",
-  });
-</script>
+    <!-- n8n Chat Widget Container -->
+    <div id="chat-box"></div>
+
+    <!-- n8n Chat Script -->
+    <script type="module">
+      import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat@latest/dist/chat.bundle.es.js";
+
+      createChat({
+        webhookUrl: "https://n8n.christinegiljang.it.com/webhook/cffdfe68-9f96-4874-87c5-c0239aecf701/chat",
+        target: "#chat-box"
+      });
+    </script>
+
     <!-- Basic Scripts -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -215,60 +171,18 @@
         color: #333;
       }
 
-       .chat-inputs {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px;
-  border-top: 1px solid #ccc;
-  background-color: #fff;
-  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.05);
-}
-
-.chat-inputs textarea {
-  flex-grow: 1;
-  resize: none;
-  padding: 10px 14px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: 14px;
-  line-height: 1.4;
-  outline: none;
-  transition: border 0.2s ease;
-}
-
-.chat-inputs textarea:focus {
-  border-color: #4a90e2;
-}
-
-.chat-inputs-controls {
-  display: flex;
-  align-items: center;
-}
-
-.chat-input-send-button {
-  background-color: #4a90e2;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.chat-input-send-button[disabled] {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-
       .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
+      }
+
+      /* Chat Widget Container */
+      #chat-box {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
       }
 
       /* Header */
@@ -486,6 +400,11 @@
 
         .nav a {
           margin-left: 15px;
+        }
+
+        #chat-box {
+          right: 10px;
+          bottom: 10px;
         }
       }
     </style>
